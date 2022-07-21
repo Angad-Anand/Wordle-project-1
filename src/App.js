@@ -5,6 +5,7 @@ import Keyboard from "./components/Keyboard";
 import { createContext, useEffect, useState } from "react";
 import GameOver from "./components/GameOver";
 import Rules from "./components/Rules";
+import NavBar from "./components/NavBar";
 
 export const AppContext = createContext();
 
@@ -18,6 +19,8 @@ function App() {
     gameOver: false,
     guessedWord: false,
   });
+
+  const [rulesDisplay, setRulesDisplay] = useState(false);  
 
   useEffect(() => {
     generateWordSet().then((words) => {
@@ -69,14 +72,19 @@ function App() {
     });
   };
 
+  const ToggleRules = () => {
+    setRulesDisplay(rulesDisplay=>!rulesDisplay)
+  };
+
+  var rulesStyle = {};
+  if (rulesDisplay) {
+    rulesStyle.display = "none";
+  }
+
   return (
     <>
       <div className="App">
-        <nav>
-          <h1>
-            Word<span>le</span>
-          </h1>
-        </nav>
+        <NavBar style={rulesStyle} ToggleRules={ToggleRules}/>
         <AppContext.Provider
           value={{
             board,
@@ -100,8 +108,8 @@ function App() {
           </div>
         </AppContext.Provider>
       </div>
-      <div className="rules">
-        <Rules />
+      <div className="rules" style={rulesStyle}>
+        <Rules ToggleRules={ToggleRules} />
       </div>
     </>
   );
