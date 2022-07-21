@@ -4,6 +4,7 @@ import { boardDefault, generateWordSet } from "./Words";
 import Keyboard from "./components/Keyboard";
 import { createContext, useEffect, useState } from "react";
 import GameOver from "./components/GameOver";
+import Rules from "./components/Rules";
 
 export const AppContext = createContext();
 
@@ -62,40 +63,47 @@ function App() {
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
     setBoard(newBoard);
-    setCurrAttempt({ 
-      ...currAttempt, letterPos:
-       currAttempt.letterPos + 1 
-      });
+    setCurrAttempt({
+      ...currAttempt,
+      letterPos: currAttempt.letterPos + 1,
+    });
   };
 
   return (
-    <div className="App">
-      <nav>
-        <h1>Word<span>le</span></h1>
-      </nav>
-      <AppContext.Provider
-        value={{
-          board,
-          setBoard,
-          currAttempt,
-          setCurrAttempt,
-          onSelectLetter,
-          onDelete,
-          onEnter,
-          correctWord,
-          disabledLetters,
-          setDisabledLetters,
-          setGameOver,
-          gameOver,
-        }}
-      >
-        <div className="game">
-          <Board />
-          
-          {gameOver.gameOver ? <GameOver /> : <Keyboard />}
-        </div>
-      </AppContext.Provider>
-    </div>
+    <>
+      <div className="App">
+        <nav>
+          <h1>
+            Word<span>le</span>
+          </h1>
+        </nav>
+        <AppContext.Provider
+          value={{
+            board,
+            setBoard,
+            currAttempt,
+            setCurrAttempt,
+            onSelectLetter,
+            onDelete,
+            onEnter,
+            correctWord,
+            disabledLetters,
+            setDisabledLetters,
+            setGameOver,
+            gameOver,
+          }}
+        >
+          <div className="game">
+            <Board />
+
+            {gameOver.gameOver ? <GameOver /> : <Keyboard />}
+          </div>
+        </AppContext.Provider>
+      </div>
+      <div className="rules">
+        <Rules />
+      </div>
+    </>
   );
 }
 
