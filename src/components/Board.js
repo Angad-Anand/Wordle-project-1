@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Letter from "./Letter";
 
-function Board() {
+function Board(props) {
 
   return (
-    <div className="board">
+    <div className="board" style={props.mode ? { color:"white" } : { color:"black"}}>
       <div className="row">
         <Letter letterPos={0} attemptVal={0} />
         <Letter letterPos={1} attemptVal={0} />

@@ -20,13 +20,14 @@ function App() {
     guessedWord: false,
   });
 
-  const [rulesDisplay, setRulesDisplay] = useState(false);  
+  const [rulesDisplay, setRulesDisplay] = useState(false);
+  const [mode, setMode] = useState(true);
 
   useEffect(() => {
     generateWordSet().then((words) => {
       setWordSet(words.wordset);
       setCorrectWord(words.todaysWord.toUpperCase());
-      console.log(words.todaysWord);
+      // console.log(words.todaysWord);
     });
   }, []);
 
@@ -73,7 +74,7 @@ function App() {
   };
 
   const ToggleRules = () => {
-    setRulesDisplay(rulesDisplay=>!rulesDisplay)
+    setRulesDisplay((rulesDisplay) => !rulesDisplay);
   };
 
   var rulesStyle = {};
@@ -81,10 +82,30 @@ function App() {
     rulesStyle.display = "none";
   }
 
+  const ToggleMode = () => {
+    setMode((mode) => !mode);
+  };
+
+  var modeLogo = {};
+  if (mode) {
+    modeLogo = "light_mode";
+  } else {
+    modeLogo = "dark_mode";
+  }
+
   return (
     <>
-      <div className="App">
-        <NavBar style={rulesStyle} ToggleRules={ToggleRules}/>
+      <div
+        className="App"
+        style={mode ? { background: "#1B2430" } : { background: "#FFE6E6" }}
+      >
+        <NavBar
+          style={rulesStyle}
+          ToggleRules={ToggleRules}
+          ToggleMode={ToggleMode}
+          modeLogo={modeLogo}
+          mode={mode}
+        />
         <AppContext.Provider
           value={{
             board,
@@ -99,17 +120,18 @@ function App() {
             setDisabledLetters,
             setGameOver,
             gameOver,
+            mode,
           }}
         >
           <div className="game">
-            <Board />
+            <Board mode={mode} />
 
             {gameOver.gameOver ? <GameOver /> : <Keyboard />}
           </div>
         </AppContext.Provider>
       </div>
       <div className="rules" style={rulesStyle}>
-        <Rules ToggleRules={ToggleRules} />
+        <Rules ToggleRules={ToggleRules} mode={mode} />
       </div>
     </>
   );

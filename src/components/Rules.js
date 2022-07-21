@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Rules(props) {
   return (
-    <div className="rules-container">
+    <div className="rules-container" style={props.mode ? { background:"#3C415C" } : { background: "#FFDEB4" , color:"#121212"}}>
       <div className="rules-top">
         <h3>HOW TO PLAY</h3>
-        <button className="close" onClick={props.ToggleRules}>
-          <span className="material-icons-sharp">close</span>
+        <button className="close" onClick={props.ToggleRules} style={props.mode ? { background:"#3C415C" } : { background: "#FFDEB4" , color:"#121212"}}>
+          <span class="material-symbols-sharp" >close</span>
         </button>
       </div>
       <div className="rules-body">

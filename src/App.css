@@ -23,7 +23,8 @@ nav {
   height: 50px;
   width: 100%;
   margin: 0;
-  outline: 1px solid grey;
+  border-bottom: 2px solid #2C3333; 
+  outline: 2px solid #E7AB79;
   display: flex;
   place-items: center;
   position: relative;
@@ -42,7 +43,21 @@ nav h1 {
 }
 
 nav .le {
-  color: rgb(239, 226, 85);
+  color: #efe255;
+}
+
+nav .toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: white;
+  background: rgb(18, 18, 19);
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 15%;
 }
 
 nav .help {
@@ -72,7 +87,7 @@ nav .help {
 .board {
   width: 350px;
   height: auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,13 +104,12 @@ nav .help {
 .letter {
   width: 40px;
   height: 40px;
-  outline: 3px solid rgb(58,58,60);
+  outline: 3px solid #818384;
   margin: 5px;
   display: grid;
   place-items: center;
   font-size: 20px;
   font-weight: bolder;
-  color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -108,7 +122,7 @@ nav .help {
 }
 
 #error {
-  background-color: #3a393c;
+  background-color: #746f83;
 }
 
 .keyboard {
@@ -162,7 +176,7 @@ nav .help {
 }
 
 #disabled {
-  background-color: #3a393c;
+  background-color: #403f44;
 }
 
 /*=========================Rules================*/
@@ -186,6 +200,7 @@ nav .help {
   color: white;
   padding: 10px 30px 10px 30px;
   border-radius: 20px;
+  opacity:0.95;
 }
 
 .rules-top {
